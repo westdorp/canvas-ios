@@ -194,12 +194,13 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
                 let url = attachment.url {
                 switch attachment.mimeClass {
                 case "doc", "image", "pdf":
-                    return DocViewerViewController.create(
-                        filename: filename,
-                        previewURL: attachment.previewURL,
-                        fallbackURL: url,
-                        navigationItem: view?.navigationItem
-                    )
+//                    return DocViewerViewController.create(
+//                        filename: filename,
+//                        previewURL: attachment.previewURL,
+//                        fallbackURL: url,
+//                        navigationItem: view?.navigationItem
+//                    )
+                    break
                 case "audio", "video":
                     let player = AVPlayer(url: url)
                     let controller = AVPlayerViewController()

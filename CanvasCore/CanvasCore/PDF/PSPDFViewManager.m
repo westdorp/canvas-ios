@@ -28,7 +28,7 @@
 RCT_EXPORT_MODULE()
 
 - (UIView *)view {
-    return [PSPDFView new];
+    return [UIView new];
 }
 
 RCT_EXPORT_VIEW_PROPERTY(config, NSDictionary *)

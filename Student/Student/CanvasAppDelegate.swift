@@ -18,7 +18,7 @@
 
 import AVKit
 import UIKit
-import PSPDFKit
+//import PSPDFKit
 import CanvasCore
 import ReactiveSwift
 import UserNotifications
@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
             UITestHelpers.setup(self)
         #endif
 
-        DocViewerViewController.setup(.studentPSPDFKitLicense)
+//        DocViewerViewController.setup(.studentPSPDFKitLicense)
         prepareReactNative()
         setupDefaultErrorHandling()
         setupPageViewLogging()
