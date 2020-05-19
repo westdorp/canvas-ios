@@ -53,6 +53,7 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
     var accountID: String = ""
     var pairingCode: String = ""
     var addStudentPairingController: AddStudentController?
+    var shouldPromptUserForWhichLoggedInAccount: Bool = false
 
     static func create(baseURL: URL, accountID: String, pairingCode: String) -> CreateAccountViewController {
         let vc = loadFromStoryboard()
@@ -71,9 +72,10 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
             addPairingCodeToCurrentAccount(pairingCode)
             return
         case .multipleAccounts:
-            promptUserForWhichLoggedInAccount()
+            showNonSignupUI(message: NSLocalizedString("Adding Student...", comment: ""))
+            shouldPromptUserForWhichLoggedInAccount = true
             return
-        default: break  // no accounts matching
+        default: break  // continue on to layout for creating account
         }
 
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -117,6 +119,8 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         adjustTermsAndConditionsHeight()
+
+        if shouldPromptUserForWhichLoggedInAccount {  promptUserForWhichLoggedInAccount() }
     }
 
     func setupKeyboardNofications() {
@@ -251,9 +255,12 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
     }
 
     func addPairingCodeToCurrentAccount(_ code: String) {
+        print("****** \(#function)")
         assert(presentingViewController is ErrorViewController, "presentingViewController needs to conform to ErrorViewController protocol")
         guard let presentingVC = presentingViewController as? ErrorViewController else { return }
         addStudentPairingController = AddStudentController(presentingViewController: self) { [unowned self] error in
+            print("****** \(self)")
+            print("****** \(presentingVC)")
             AppEnvironment.shared.router.dismiss(self) {
                 if let error = error { presentingVC.showError(error) }
             }
@@ -264,7 +271,9 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
     }
 
     func promptUserForWhichLoggedInAccount() {
-        //  TODO: - prompt user
+        guard let url = baseURL else { return }
+        let selectSessionVC = SelectSessionViewController.create(baseURL: url, delegate: self)
+        AppEnvironment.shared.router.show(selectSessionVC, from: self, options: .modal())
     }
 
     func showNonSignupUI(message: String?, show: Bool = true) {
@@ -272,6 +281,16 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
         self.asyncOperationContainer.isHidden = !show
         self.asyncActivityIndicator.color = .named(.electric)
         self.asyncOpLabel.text = message
+    }
+}
+
+extension CreateAccountViewController: SelectSessionProtocol {
+    func didSelectSession(_ session: LoginSession) {
+        let code = pairingCode
+        print("*** \(#function)")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+            self?.addPairingCodeToCurrentAccount(code)
+        }
     }
 }
 

@@ -37,6 +37,8 @@
 		3B801BFD2322FFB400D143F0 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48B11F912BD100A3BC06 /* Alert.swift */; };
 		3BA9FF6D2332999900196A06 /* CourseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9FF6C2332999900196A06 /* CourseDetailsViewController.swift */; };
 		3BC50CC5246B11C00023159F /* CreateAccountViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC50CC4246B11C00023159F /* CreateAccountViewControllerTests.swift */; };
+		3BC50CCB2473C6710023159F /* SelectUserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC50CCA2473C6710023159F /* SelectUserListViewController.swift */; };
+		3BC50CCD2473CBD90023159F /* LoginStartSessionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BC50CCC2473CBD90023159F /* LoginStartSessionCell.xib */; };
 		3BD0CD732327026400B3341E /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD0CD722327026400B3341E /* Core.framework */; };
 		3BD0CD762327027000B3341E /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD0CD742327027000B3341E /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3BEA6CC0245887F000BE4589 /* ParentConversationListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BEA6CBE245887F000BE4589 /* ParentConversationListViewController.storyboard */; };
@@ -447,6 +449,8 @@
 		3B54E3582326F9B000D8D1D2 /* ParentTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentTestCase.swift; sourceTree = "<group>"; };
 		3BA9FF6C2332999900196A06 /* CourseDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewController.swift; sourceTree = "<group>"; };
 		3BC50CC4246B11C00023159F /* CreateAccountViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewControllerTests.swift; sourceTree = "<group>"; };
+		3BC50CCA2473C6710023159F /* SelectUserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUserListViewController.swift; sourceTree = "<group>"; };
+		3BC50CCC2473CBD90023159F /* LoginStartSessionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginStartSessionCell.xib; sourceTree = "<group>"; };
 		3BD0CD722327026400B3341E /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BD0CD742327027000B3341E /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BEA6CBE245887F000BE4589 /* ParentConversationListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ParentConversationListViewController.storyboard; sourceTree = "<group>"; };
@@ -795,6 +799,8 @@
 				3B4C5449245E841600E1AE33 /* CreateAccountViewController.swift */,
 				3B4C544B245E844200E1AE33 /* CreateAccountViewController.storyboard */,
 				3B4C544D245E8C6100E1AE33 /* CreateAccountRow.xib */,
+				3BC50CCA2473C6710023159F /* SelectUserListViewController.swift */,
+				3BC50CCC2473CBD90023159F /* LoginStartSessionCell.xib */,
 			);
 			path = "Create Account";
 			sourceTree = "<group>";
@@ -1446,6 +1452,7 @@
 				3BEA6CC0245887F000BE4589 /* ParentConversationListViewController.storyboard in Resources */,
 				7D33976E24534D8C0074ED71 /* StudentListViewController.storyboard in Resources */,
 				7D00F3482457776600C370D5 /* StudentDetailsViewController.storyboard in Resources */,
+				3BC50CCD2473CBD90023159F /* LoginStartSessionCell.xib in Resources */,
 				7D4C6F35243BE099003C1728 /* AdminViewController.storyboard in Resources */,
 				2CB69BB71D91CDF30059C5A5 /* DetailsReminderCell.xib in Resources */,
 				7D52D8A622FCC8C200684932 /* DiscussionKit.xcdatamodeld in Resources */,
@@ -1671,6 +1678,7 @@
 				5E41048D1C9B1F3E0021567C /* CalendarEvent+Submissions.swift in Sources */,
 				7D00F34424574A6F00C370D5 /* GetObservedStudents.swift in Sources */,
 				5E4E20511C927EB100E7D709 /* ColorScheme.swift in Sources */,
+				3BC50CCB2473C6710023159F /* SelectUserListViewController.swift in Sources */,
 				3B4C544A245E841600E1AE33 /* CreateAccountViewController.swift in Sources */,
 				613E90E61D088DA600416EBE /* UITextField+ReturnKeyUpdate.swift in Sources */,
 				497C48E91F9153D100A3BC06 /* AirwolfAPI.swift in Sources */,

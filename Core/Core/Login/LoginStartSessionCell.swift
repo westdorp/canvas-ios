@@ -18,20 +18,20 @@
 
 import UIKit
 
-protocol LoginStartSessionDelegate: class {
+public protocol LoginStartSessionDelegate: class {
     func removeSession(_ session: LoginSession)
 }
 
-class LoginStartSessionCell: UITableViewCell {
+public class LoginStartSessionCell: UITableViewCell {
     @IBOutlet weak var avatarView: AvatarView?
     @IBOutlet weak var domainLabel: DynamicLabel?
-    @IBOutlet weak var forgetButton: DynamicButton?
+    @IBOutlet public weak var forgetButton: DynamicButton?
     @IBOutlet weak var nameLabel: DynamicLabel?
 
     var entry: LoginSession?
     weak var delegate: LoginStartSessionDelegate?
 
-    func update(entry: LoginSession, delegate: LoginStartSessionDelegate) {
+    public func update(entry: LoginSession, delegate: LoginStartSessionDelegate?) {
         self.entry = entry
         self.delegate = delegate
         let identifier = "LoginStartSession.\(entry.baseURL.host ?? "").\(entry.userID)"

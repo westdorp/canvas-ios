@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="LoginStartSessionCell" rowHeight="60" id="2S8-Fv-s54" customClass="LoginStartSessionCell" customModule="Core">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2S8-Fv-s54" id="Mfi-Ke-mgT">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z0D-SH-YJp" customClass="AvatarView" customModule="Parent" customModuleProvider="target">
+                        <rect key="frame" x="16" y="13" width="34" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="34" id="Tih-hZ-eqV"/>
+                            <constraint firstAttribute="height" constant="34" id="bl4-jS-YCg"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="name" value="Firstname Lastname"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Firstname Lastname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMF-iS-x7M" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
+                        <rect key="frame" x="58" y="13" width="155" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mobiledev.instructure.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubm-Qb-95q" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
+                        <rect key="frame" x="58" y="34.5" width="203" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold12"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qqe-IM-OtI" customClass="DynamicButton" customModule="Parent" customModuleProvider="target">
+                        <rect key="frame" x="328" y="8" width="44" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="TK2-0r-ecB"/>
+                            <constraint firstAttribute="width" constant="44" id="vfO-Cy-FUb"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="xLine"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="removeTapped:" destination="2S8-Fv-s54" eventType="primaryActionTriggered" id="vnb-j5-R6h"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="hMF-iS-x7M" firstAttribute="leading" secondItem="z0D-SH-YJp" secondAttribute="trailing" constant="8" id="9Ze-5K-wuO"/>
+                    <constraint firstItem="hMF-iS-x7M" firstAttribute="top" secondItem="Mfi-Ke-mgT" secondAttribute="top" constant="13" id="GcN-vW-y9x"/>
+                    <constraint firstItem="Qqe-IM-OtI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ubm-Qb-95q" secondAttribute="trailing" constant="8" id="IM7-b6-EWE"/>
+                    <constraint firstItem="Qqe-IM-OtI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hMF-iS-x7M" secondAttribute="trailing" constant="8" id="RWP-Fd-uZ5"/>
+                    <constraint firstItem="z0D-SH-YJp" firstAttribute="centerY" secondItem="Mfi-Ke-mgT" secondAttribute="centerY" id="Tix-lO-hi7"/>
+                    <constraint firstItem="ubm-Qb-95q" firstAttribute="leading" secondItem="z0D-SH-YJp" secondAttribute="trailing" constant="8" id="XdX-x3-mtm"/>
+                    <constraint firstItem="ubm-Qb-95q" firstAttribute="top" secondItem="hMF-iS-x7M" secondAttribute="bottom" constant="1" id="cuO-7W-haC"/>
+                    <constraint firstItem="z0D-SH-YJp" firstAttribute="leading" secondItem="Mfi-Ke-mgT" secondAttribute="leading" constant="16" id="eTA-sQ-Q54"/>
+                    <constraint firstItem="Qqe-IM-OtI" firstAttribute="centerY" secondItem="Mfi-Ke-mgT" secondAttribute="centerY" id="pks-Lf-hOr"/>
+                    <constraint firstAttribute="trailing" secondItem="Qqe-IM-OtI" secondAttribute="trailing" constant="3" id="yzs-tZ-RCM"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="avatarView" destination="z0D-SH-YJp" id="veX-4Y-hxc"/>
+                <outlet property="domainLabel" destination="ubm-Qb-95q" id="m7K-18-06k"/>
+                <outlet property="forgetButton" destination="Qqe-IM-OtI" id="KNK-vO-uLh"/>
+                <outlet property="nameLabel" destination="hMF-iS-x7M" id="Sa3-k9-hiT"/>
+            </connections>
+            <point key="canvasLocation" x="138" y="151"/>
+        </tableViewCell>
+    </objects>
+</document>
