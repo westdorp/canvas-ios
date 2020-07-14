@@ -96,9 +96,13 @@ workflows:
         - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
         title: rn yarn install
     - &cocoapods
-      cocoapods-install:
+      script:
+        title: Install cocoapods
         inputs:
-        - verbose: 'false'
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            set -e
+            pod install
     - &build-citests
       script:
         title: Build CITests
@@ -318,7 +322,8 @@ workflows:
             # pax format preserves nanosecond mtime
             gtar -czPf main-cache.pax.gz --format=pax \
                 ~/Library/Developer/Xcode/DerivedData \
-                rn/Teacher/node_modules/
+                rn/Teacher/node_modules/ \
+                Pods
     - cache-push:
         inputs:
         - compress_archive: false
