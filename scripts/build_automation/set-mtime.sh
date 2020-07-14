@@ -19,6 +19,8 @@
 
 set -euxo pipefail
 
+exit
+
 function setLastChanged {
     # Set time on all files from commit
     git fetch origin $1 || git fetch origin master

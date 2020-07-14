@@ -46,8 +46,17 @@ workflows:
         inputs:
         - access_token: "$BITRISE_CI_TOKEN"
         - workflows: danger-yarn
-
     - cache-pull: {}
+    - &expand-cache
+      script:
+        title: Expand cache
+        is_skippable: true
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            tar -xzPf homebrew-cache.tgz
+            brew reinstall gnu-tar
+            gtar -xzPf main-cache.pax.gz
     - &set-mtime
       script-runner:
         title: Set file mtime
@@ -66,7 +75,7 @@ workflows:
             brew tap mxcl/made
             brew tap thii/xcbeautify https://github.com/thii/xcbeautify.git
 
-            brew reinstall swiftlint jq xcbeautify
+            brew reinstall swiftlint jq xcbeautify gnu-tar
 
             pip3 install awscli
             rm -rf "$BITRISE_SOURCE_DIR/Pods/Target Support Files/yoga"
@@ -205,6 +214,7 @@ workflows:
   danger-yarn:
     steps:
     - cache-pull: {}
+    - *expand-cache
     - *set-mtime
     - *install-tools
     - script:
@@ -303,14 +313,19 @@ workflows:
             echo $GIT_CLONE_COMMIT_HASH > cache-metadata/cache-commit-hash
             # always cache
             uuidgen > cache-metadata/cache-fingerprint
+
+            gtar -czPf homebrew-cache.tgz /usr/local/Homebrew
+            # pax format preserves nanosecond mtime
+            gtar -czPf main-cache.pax.gz --format=pax \
+                ~/Library/Developer/Xcode/DerivedData \
+                rn/Teacher/node_modules/
     - cache-push:
         inputs:
-        - compress_archive: true
+        - compress_archive: false
         - cache_paths: |-
             cache-metadata/ -> cache-metadata/cache-fingerprint
-            rn/Teacher/node_modules/ -> cache-metadata/cache-fingerprint
-            ~/Library/Developer/Xcode/DerivedData -> cache-metadata/cache-fingerprint
-            /usr/local/Homebrew -> cache-metadata/cache-fingerprint
+            homebrew-cache.tgz -> cache-metadata/cache-fingerprint
+            main-cache.pax.gz -> cache-metadata/cache-fingerprint
 
   nightly:
     steps:
@@ -398,6 +413,7 @@ workflows:
       git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
         title: Canvas iOS Secrets
     - cache-pull: {}
+    - *expand-cache
     - *set-mtime
     - *install-tools
     - *yarn-install-root
@@ -566,6 +582,7 @@ workflows:
     steps:
     - *secrets
     - cache-pull: {}
+    - *expand-cache
     - *set-mtime
     - *install-tools
     - *yarn-install-root
@@ -581,6 +598,7 @@ workflows:
     - *set-time-zone
     - *secrets
     - cache-pull: {}
+    - *expand-cache
     - *set-mtime
     - *install-tools
     - *yarn-install-root
@@ -613,6 +631,7 @@ workflows:
   publish-pact-contracts:
     steps:
     - cache-pull: {}
+    - *expand-cache
     - *set-mtime
     - *install-tools
     - script:
