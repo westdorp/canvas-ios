@@ -47,22 +47,6 @@ workflows:
         - access_token: "$BITRISE_CI_TOKEN"
         - workflows: danger-yarn
     - cache-pull: {}
-    - &expand-cache
-      script:
-        title: Expand cache
-        is_skippable: true
-        inputs:
-        - runner_bin: "/bin/zsh"
-        - content: |-
-            tar -xzPf homebrew-cache.tgz
-            brew reinstall gnu-tar
-            gtar -xzPf main-cache.pax.gz
-    - &set-mtime
-      script-runner:
-        title: Set file mtime
-        inputs:
-        - runner: "/bin/zsh"
-        - file_path: scripts/build_automation/set-mtime.sh
     - &install-tools
       script:
         title: Install build tools
@@ -71,6 +55,8 @@ workflows:
         - content: |-
             #!/bin/zsh
             set -euxo pipefail
+
+            tar -xzPf cache.pax.gz || true
 
             brew tap mxcl/made
             brew tap thii/xcbeautify https://github.com/thii/xcbeautify.git
@@ -217,9 +203,8 @@ workflows:
 
   danger-yarn:
     steps:
+    - *set-time-zone
     - cache-pull: {}
-    - *expand-cache
-    - *set-mtime
     - *install-tools
     - script:
         title: Swift Lint
@@ -288,6 +273,7 @@ workflows:
 
   nightly-cache-gen:
     steps:
+    - *set-time-zone
     - *install-tools
     - *yarn-install-root
     - *yarn-install
@@ -318,10 +304,11 @@ workflows:
             # always cache
             uuidgen > cache-metadata/cache-fingerprint
 
-            gtar -czPf homebrew-cache.tgz /usr/local/Homebrew
-            # pax format preserves nanosecond mtime
-            gtar -czPf main-cache.pax.gz --format=pax \
+            # gnu-tar + pax format preserves nanosecond mtime
+            gtar -czPf cache.pax.gz --format=pax \
                 ~/Library/Developer/Xcode/DerivedData \
+                /usr/local/Homebrew \
+                node_modules/ \
                 rn/Teacher/node_modules/ \
                 Pods
     - cache-push:
@@ -329,8 +316,7 @@ workflows:
         - compress_archive: false
         - cache_paths: |-
             cache-metadata/ -> cache-metadata/cache-fingerprint
-            homebrew-cache.tgz -> cache-metadata/cache-fingerprint
-            main-cache.pax.gz -> cache-metadata/cache-fingerprint
+            cache.pax.gz -> cache-metadata/cache-fingerprint
 
   nightly:
     steps:
@@ -373,6 +359,7 @@ workflows:
 
   nightly-runner:
     steps:
+    - *set-time-zone
     - script:
         title: Set up environment variables
         inputs:
@@ -418,8 +405,6 @@ workflows:
       git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
         title: Canvas iOS Secrets
     - cache-pull: {}
-    - *expand-cache
-    - *set-mtime
     - *install-tools
     - *yarn-install-root
     - *yarn-install
@@ -587,8 +572,6 @@ workflows:
     steps:
     - *secrets
     - cache-pull: {}
-    - *expand-cache
-    - *set-mtime
     - *install-tools
     - *yarn-install-root
     - *yarn-install
@@ -603,8 +586,6 @@ workflows:
     - *set-time-zone
     - *secrets
     - cache-pull: {}
-    - *expand-cache
-    - *set-mtime
     - *install-tools
     - *yarn-install-root
     - *yarn-install
@@ -635,9 +616,8 @@ workflows:
 
   publish-pact-contracts:
     steps:
+    - *set-time-zone
     - cache-pull: {}
-    - *expand-cache
-    - *set-mtime
     - *install-tools
     - script:
         title: Install pact tools
