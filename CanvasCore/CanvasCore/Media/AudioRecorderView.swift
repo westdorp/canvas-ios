@@ -28,7 +28,7 @@ private let meterTicks = 13
 
 // this is an abstraction introduced for the purposes of testing
 public protocol AudioRecorderPermissionDelegate {
-    func requestRecordPermission(_ response: @escaping AVFoundation.PermissionBlock)
+    func requestRecordPermission(_ response: @escaping (Bool) -> Void)
     var recordPermission: AVAudioSession.RecordPermission { get }
 }
 
